@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{title}}</title>
+    <link rel='stylesheet' href='/stylesheets/styles.css'/>
+    <link href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+  </head>
+  
+  <body>
+    <div class="header-lg">
+        <span class="material-icons back-button" style="display: none;" onclick="window.history.go(-1); return false;">arrow_back</span>
+        <a href="/" id="logo"><img src="/images/Logo.svg"></a>
+        <p>Search <b>Maori/English</b> words</p>
+
+        <form action="/search" method="get">
+            <span class="material-icons-round">search</span>
+            <input type="search" id="word" name="word">
+        </form>
+
+        {{#if loggedIn}}
+        <p id="log-in-button" >{{loggedInUser}}</p>
+        {{else}}
+        <a id="log-in-button" href="/login">Login</a>
+        {{/if}}
+    </div>
+    <div class="spacer"></div>
+    {{{body}}}
+
+    {{#if loggedIn}}
+    <a id="add-word-button" href="/add-word">
+        <span class="material-icons-round">add</span>
+    </a>
+    {{/if}}
+
+    <br><br>
+    <footer>
+      <a href="/category/Animals">Animals</a>
+      <a href="/category/Actions">Actions</a>
+      <a href="/category/Clothing">Clothing</a>
+      <a href="/category/Culture %2f Religion">Culture / Religion</a>
+      <a href="/category/Descriptive">Descriptive</a>
+      <a href="/category/Emotions">Emotions</a>
+      <a href="/category/Food">Food</a>
+      <a href="/category/Math %2f Number">Math / Number</a>
+      <a href="/category/Outdoors">Outdoors</a>
+      <a href="/category/People">People</a>
+      <a href="/category/Places">Places</a>
+      <a href="/category/Plants">Plants</a>
+      <a href="/category/School">School</a>
+      <a href="/category/Sport">Sport</a>
+      <a href="/category/Technology">Technology</a>
+      <a href="/category/Time">Time</a>
+    </footer>
+    <script src="/javascripts/main.js"></script>
+  </body>
+</html>

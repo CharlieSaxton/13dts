@@ -1,0 +1,31 @@
+<div class="flex-center">
+    <div class="content-container">
+
+        <div class="word-info-container">
+            <p id="translation">{{rows.0.maori}} <span id="english-word" data-english-word="{{rows.0.english}}"> - {{rows.0.english}}</span><p>
+            <p id="definition">{{rows.0.definition}}</p>
+            <p id="more-info">Category: {{rows.0.category}}, Year level: {{rows.0.vocab_level}}</p>
+            <img src="{{rows.0.image}}">
+            <p id="created-at-info">Created by {{#if rows.0.author}}{{rows.0.author}}{{else}}Charlie{{/if}} on {{rows.0.created_at}}</p>
+        </div>
+        <br>
+        <div class="devider"></div>
+        <div class="initial-margin">
+            <br>
+            <p class="section-header">Similar words</p>
+            {{#each rows.0.additionalWords.rows}}
+            <a href="/word/{{this.id}}">
+                <div class="word-button-container">
+                    <img src="{{this.image}}">
+                    <div>
+                        <h2>{{this.maori}} <span>- {{this.english}}</span></h2> 
+                        <p>{{this.definition}}</p> 
+                    </div>
+
+                </div>
+            </a>
+            {{/each}}
+        </div>
+    </div>
+    
+</div>
