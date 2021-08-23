@@ -58,6 +58,18 @@ router.get('/word/:wordId', async function(req, res, next) {
   res.render('word-info', result);
 });
 
+
+router.get('/deleteword/:wordId', async function(req, res, next) {
+  if(req.session.loggedin){
+    let query = "DELETE FROM words WHERE id = $1;"
+    let values = [req.params.wordId];
+    let result = await dbPool.query(query, values);
+    res.redirect('/');
+  }else{
+    res.redirect('/');
+  }
+});
+
 router.get('/search', async function(req, res, next) {
   let query = "select maori, english, definition, id from words where lower(maori) like lower($1) or lower(english) like lower($1)";
   let values = [req.query.word + '%'];

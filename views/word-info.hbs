@@ -2,7 +2,17 @@
     <div class="content-container">
 
         <div class="word-info-container">
-            <p id="translation">{{rows.0.maori}} <span id="english-word" data-english-word="{{rows.0.english}}"> - {{rows.0.english}}</span><p>
+            <div class="header-delete-container">
+                <p id="translation">{{rows.0.maori}} <span id="english-word" data-english-word="{{rows.0.english}}"> - {{rows.0.english}}</span><p></p>
+                {{#if loggedIn}}
+                    <a href="/deleteword/{{rows.0.id}}">
+                        <span class="material-icons-round">delete</span>
+                    </a>
+                {{/if}}
+            </div>
+
+    
+            
             <p id="definition">{{rows.0.definition}}</p>
             <p id="more-info">Category: {{rows.0.category}}, Year level: {{rows.0.vocab_level}}</p>
             <img src="{{rows.0.image}}">

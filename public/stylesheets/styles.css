@@ -358,4 +358,13 @@ footer a {
   text-align: center;
   margin: 5px 0px 15px 0px;
 }
+
+.header-delete-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
 /*# sourceMappingURL=styles.css.map */
