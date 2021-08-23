@@ -3,7 +3,8 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "export DATABASE_URL=postgres://charliesaxton@localhost:5432/13dts; node ./bin/www",
+    "start": "node ./bin/www",
+    "startdev": "export DATABASE_URL=postgres://charliesaxton@localhost:5432/13dts; node ./bin/www",
     "startmon": "export DATABASE_URL=postgres://charliesaxton@localhost:5432/13dts; nodemon ./bin/www"
   },
   "dependencies": {

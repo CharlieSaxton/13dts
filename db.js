@@ -7,7 +7,7 @@ if(!process.env.DATABASE_URL) {
   
 const { Pool } = require('pg');
 var dbPool;
-console.log(process.env.DATABASE_URL)
+
 if(process.env.PGSSLMODE) {
     dbPool = new Pool({
         connectionString: process.env.DATABASE_URL,
