@@ -3,8 +3,9 @@ if(!process.env.DATABASE_URL) {
     console.log("ERROR: DATABASE_URL not defined");
     console.log("Do something like: export DATABASE_URL=postgres://chaliesaxton@localhost:5432/13dts");
     process.exit();
-  }
-  
+}
+
+//initialising database
 const { Pool } = require('pg');
 var dbPool;
 
@@ -21,6 +22,7 @@ if(process.env.PGSSLMODE) {
     });
 }
 
+//connecting to database
 dbPool.connect();
 
 module.exports = dbPool;
