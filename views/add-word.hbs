@@ -6,26 +6,23 @@
         <textarea  name="definition" placeholder="Definition" required></textarea>
         <p class="section-header">Category</p>
         <select name="category" required>
-            <option value="Animals">Animals</option>
-            <option value="Actions">Actions</option>
-            <option value="Clothing">Clothing</option>
-            <option value="Culture / Religion">Culture / Religion</option>
-            <option value="Descriptive">Descriptive</option>
-            <option value="Emotions">Emotions</option>
-            <option value="Food">Food</option>
-            <option value="Math / Number">Math / Number</option>
-            <option value="Outdoors">Outdoors</option>
-            <option value="People">People</option>
-            <option value="Places">Places</option>
-            <option value="Plants">Plants</option>
-            <option value="School">School</option>
-            <option value="Sport">Sport</option>
-            <option value="Technology">Technology</option>
-            <option value="Time">Time</option>
+            {{#each categoryResult.rows}}
+            <option value="{{this.category_name}}">{{this.category_name}}</option>
+            {{/each}}
         </select>
         <p class="section-header">Year level</p>
         <input type="number" name="level" value="1" min="1" max="10" required>
 
+        <input type="submit">
+    </form>
+</div>
+
+
+<br><br><br>
+<div class="form">
+    <h1>Create new category</h1>
+    <form action="post-category" method="POST">
+        <input type="text" name="categoryName" placeholder="Category name" required>
         <input type="submit">
     </form>
 </div>

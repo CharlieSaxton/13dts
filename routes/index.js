@@ -22,22 +22,29 @@ function imageCheck(result){
 
 /* GET home page. */
 router.get('/', async function(req, res, next) {
-  let words = [];
-  let query = "select maori, english, definition, id from words";
-  let result = await dbPool.query(query);
-  result.filter = "All words";
-  result = imageCheck(result);
+  let categoryQuery = "select category_name from categorys";
+  let categoryResult = await dbPool.query(categoryQuery);
+  let wordQuery = "select maori, english, definition, id from words";
+  let wordResult = await dbPool.query(wordQuery);
+  wordResult.filter = "All words";
+  wordResult = imageCheck(wordResult);
+  let result = {};
+  result.wordResult = wordResult;
+  result.categoryResult = categoryResult;
   result.loggedIn = req.session.loggedin;
   result.loggedInUser = req.session.username;
+  console.log(result)
   res.render('index', result);
 });
 
 router.get('/category/:categoryName', async function(req, res, next) {
   let query = "select maori, english, definition, id from words where lower(category) = lower($1)";
   let values = [req.params.categoryName];
-  let result = await dbPool.query(query, values);
-  result.filter = req.params.categoryName;
-  result = imageCheck(result);
+  let wordResult = await dbPool.query(query, values);
+  wordResult.filter = req.params.categoryName;
+  wordResult = imageCheck(wordResult);
+  let result = {};
+  result.wordResult = wordResult;
   result.loggedIn = req.session.loggedin;
   result.loggedInUser = req.session.username;
   res.render('index', result);
@@ -85,7 +92,10 @@ router.get('/login', async function(req, res, next) {
   res.render('login', {error: false});
 });
 router.get('/add-word', async function(req, res, next) {
+  let categoryQuery = "select category_name from categorys";
+  let categoryResult = await dbPool.query(categoryQuery);
   let result = {
+    categoryResult: categoryResult,
     loggedIn: req.session.loggedin,
     loggedInUser: req.session.username
   }
@@ -95,7 +105,6 @@ router.get('/add-word', async function(req, res, next) {
     res.redirect('/');
   }
 });
-
 router.post('/auth', async function(request, res) {
 	var username = request.body.username;
 	var password = request.body.password;
@@ -123,6 +132,13 @@ router.post('/post-word', async function(req, res, response) {
   res.redirect('/word/' + result.rows[0].id);
 });
 
+router.post('/post-category', async function(req, res, response) {
+  console.log("here")
+  let query = 'INSERT INTO categorys (category_name) VALUES ($1);';
+  let values = [req.body.categoryName];
+  let result = await dbPool.query(query, values);
+  res.redirect('/');
+});
 
 
 

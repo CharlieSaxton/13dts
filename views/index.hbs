@@ -1,47 +1,32 @@
 <div class="flex-center">
     <div class="catagory-container">
-        <a id="Animals" href="/category/Animals">Animals</a>
-        <a id="Actions" href="/category/Actions">Actions</a>
-        <a id="Clothing" href="/category/Clothing">Clothing</a>
-        <a id="CultureReligion" href="/category/Culture %2f Religion">Culture / Religion</a>
-        <a id="Descriptive" href="/category/Descriptive">Descriptive</a>
-        <a id="Emotions" href="/category/Emotions">Emotions</a>
-        <a id="Food" href="/category/Food">Food</a>
-        <a id="MathNumber" href="/category/Math %2f Number">Math / Number</a>
-        <a id="Outdoors" href="/category/Outdoors">Outdoors</a>
-        <a id="People" href="/category/People">People</a>
-        <a id="Places" href="/category/Places">Places</a>
-        <a id="Plants" href="/category/Plants">Plants</a>
-        <a id="School" href="/category/School">School</a>
-        <a id="Sport" href="/category/Sport">Sport</a>
-        <a id="Technology" href="/category/Technology">Technology</a>
-        <a id="Time" href="/category/Time">Time</a>
+        {{#each categoryResult.rows}}
+            <a id="{{this.category_name}}" href="/category/{{this.category_name}}">{{this.category_name}}</a>
+        {{/each}}
     </div>
 </div>
 
 <div class="flex-center">
     <div class="content-container">
-        
-            <div class="word-container">
-                <div id="key-word-section">
-                    <p class="section-header">{{filter}}</p>
-                </div>
-                {{#each rows}}
-                <a href="/word/{{this.id}}">
-                    <div class="word-button-container">
-                        <img src="{{this.image}}">
-                        <div>
-                            <h2>{{this.maori}} <span>- {{this.english}}</span></h2> 
-                            <p>{{definition}}</p> 
-                        </div>
-
-                    </div>
-                </a>
-                {{else}}
-                <br>
-                No results found
-                {{/each}}
+        <div class="word-container">
+            <div id="key-word-section">
+                <p class="section-header">{{wordResult.filter}}</p>
             </div>
+            {{#each wordResult.rows}}
+            <a href="/word/{{this.id}}">
+                <div class="word-button-container">
+                    <img src="{{this.image}}">
+                    <div>
+                        <h2>{{this.maori}} <span>- {{this.english}}</span></h2> 
+                        <p>{{this.definition}}</p> 
+                    </div>
+
+                </div>
+            </a>
+            {{else}}
+            <br>
+            No results found
+            {{/each}}
+        </div>
     </div>
-    
 </div>
